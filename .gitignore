@@ -1,0 +1,51 @@
+# Build output
+bin/
+obj/
+artifacts/
+Build/
+Builds/
+
+# NuGet
+*.nupkg
+*.snupkg
+*.nuspec
+packages/
+
+# Test output
+TestResults/
+coverage/
+coverage.*
+*.trx
+
+# Unity generated files
+Library/
+Temp/
+Obj/
+Logs/
+UserSettings/
+MemoryCaptures/
+*.sln
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+sysinfo.txt
+
+# IDE
+.vs/
+.vscode/
+.idea/
+*.user
+*.userosscache
+*.suo
+*.rsuser
+
+# OS/editor
+.DS_Store
+Thumbs.db
+*.tmp
+*.swp
+*.swo

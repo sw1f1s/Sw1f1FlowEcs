@@ -1,0 +1,40 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.1;net8.0</TargetFrameworks>
+    <AssemblyName>Sw1f1.FlowEcs</AssemblyName>
+    <RootNamespace>Sw1f1.FlowEcs</RootNamespace>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <LangVersion>9.0</LangVersion>
+    <NoWarn>$(NoWarn);CS0693;CS8601;CS8603;CS8618;CS8625;CS1591</NoWarn>
+    <Deterministic>true</Deterministic>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <PackageOutputPath>artifacts/nuget</PackageOutputPath>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageId>Sw1f1.FlowEcs</PackageId>
+    <Version>1.0.0</Version>
+    <Authors>Volodya Litvinov</Authors>
+    <Company>Sw1f1</Company>
+    <Product>Sw1f1 Flow ECS</Product>
+    <Description>High-performance data-flow oriented ECS runtime for .NET and Unity.</Description>
+    <PackageTags>ecs;entity-component-system;gamedev;unity;dotnet;performance</PackageTags>
+    <PackageProjectUrl>https://github.com/sw1f1s/Sw1f1FlowEcs</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/sw1f1s/Sw1f1FlowEcs</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Tests/**/*.cs" />
+    <None Include="README.md" Pack="true" PackagePath="/" />
+    <None Include="LICENSE" Pack="true" PackagePath="/" />
+  </ItemGroup>
+
+</Project>

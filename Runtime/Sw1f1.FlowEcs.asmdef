@@ -1,0 +1,14 @@
+{
+  "name": "Sw1f1.FlowEcs",
+  "rootNamespace": "Sw1f1.FlowEcs",
+  "references": [],
+  "includePlatforms": [],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "autoReferenced": true,
+  "defineConstraints": [],
+  "versionDefines": [],
+  "noEngineReferences": true
+}

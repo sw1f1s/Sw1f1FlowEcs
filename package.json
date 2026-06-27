@@ -1,0 +1,23 @@
+{
+  "name": "com.sw1f1.flow-ecs",
+  "displayName": "Sw1f1 Flow ECS",
+  "version": "1.0.0",
+  "unity": "2021.3",
+  "description": "High-performance data-flow oriented ECS runtime for Unity and .NET.",
+  "keywords": [
+    "ecs",
+    "entity-component-system",
+    "gamedev",
+    "performance",
+    "data-oriented"
+  ],
+  "author": {
+    "name": "Volodya Litvinov",
+    "url": "https://github.com/sw1f1s"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sw1f1s/Sw1f1FlowEcs.git"
+  }
+}

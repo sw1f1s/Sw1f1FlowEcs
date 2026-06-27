@@ -1,0 +1,23 @@
+{
+  "name": "Sw1f1.FlowEcs.Tests",
+  "rootNamespace": "Sw1f1.FlowEcs.Tests",
+  "references": [
+    "Sw1f1.FlowEcs",
+    "UnityEngine.TestRunner",
+    "UnityEditor.TestRunner"
+  ],
+  "includePlatforms": [
+    "Editor"
+  ],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "autoReferenced": false,
+  "defineConstraints": [],
+  "versionDefines": [],
+  "optionalUnityReferences": [
+    "TestAssemblies"
+  ],
+  "noEngineReferences": false
+}

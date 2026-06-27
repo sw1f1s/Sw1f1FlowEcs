@@ -1,0 +1,42 @@
+name: Publish NuGet
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Build package without pushing to NuGet"
+        required: true
+        default: "true"
+        type: choice
+        options:
+          - "false"
+          - "true"
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Restore
+        run: dotnet restore Sw1f1FlowEcs.csproj
+
+      - name: Build netstandard2.1
+        run: dotnet build Sw1f1FlowEcs.csproj --configuration Release --framework netstandard2.1 --no-restore
+
+      - name: Build net8.0
+        run: dotnet build Sw1f1FlowEcs.csproj --configuration Release --framework net8.0 --no-restore
+
+      - name: Pack
+        run: dotnet pack Sw1f1FlowEcs.csproj --configuration Release --no-build
+
+      - name: Push to NuGet
+        if: ${{ inputs.dry_run == 'false' }}
+        run: dotnet nuget push artifacts/nuget/*.nupkg --api-key "${{ secrets.NUGET_API_KEY }}" --source https://api.nuget.org/v3/index.json --skip-duplicate

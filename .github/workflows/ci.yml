@@ -1,0 +1,48 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Restore
+        run: dotnet restore Tests/Sw1f1FlowEcs.Tests.csproj
+
+      - name: Build netstandard2.1
+        run: dotnet build Sw1f1FlowEcs.csproj --configuration Release --framework netstandard2.1 --no-restore
+
+      - name: Build net8.0
+        run: dotnet build Sw1f1FlowEcs.csproj --configuration Release --framework net8.0 --no-restore
+
+      - name: Validate Unity package manifest
+        run: node -e "const p=require('./package.json'); if(p.name!=='com.sw1f1.flow-ecs') throw new Error('Unexpected Unity package name'); if(!p.version) throw new Error('Missing version');"
+
+      - name: Pack
+        run: dotnet pack Sw1f1FlowEcs.csproj --configuration Release --no-build
+
+      - name: Test
+        run: dotnet test Tests/Sw1f1FlowEcs.Tests.csproj --configuration Release --no-restore
+
+      - name: Upload NuGet artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: nuget
+          path: |
+            artifacts/nuget/*.nupkg
+            artifacts/nuget/*.snupkg

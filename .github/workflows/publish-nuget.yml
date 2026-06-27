@@ -11,10 +11,17 @@ on:
         options:
           - "false"
           - "true"
+  push:
+    tags:
+      - "v*"
 
 jobs:
   publish:
     runs-on: ubuntu-latest
+    environment: production
+    permissions:
+      contents: read
+      id-token: write
 
     steps:
       - name: Checkout
@@ -37,6 +44,13 @@ jobs:
       - name: Pack
         run: dotnet pack Sw1f1FlowEcs.csproj --configuration Release --no-build
 
+      - name: NuGet login
+        if: ${{ github.event_name == 'push' || inputs.dry_run == 'false' }}
+        uses: NuGet/login@v1
+        id: nuget-login
+        with:
+          user: sw1f1
+
       - name: Push to NuGet
-        if: ${{ inputs.dry_run == 'false' }}
-        run: dotnet nuget push artifacts/nuget/*.nupkg --api-key "${{ secrets.NUGET_API_KEY }}" --source https://api.nuget.org/v3/index.json --skip-duplicate
+        if: ${{ github.event_name == 'push' || inputs.dry_run == 'false' }}
+        run: dotnet nuget push artifacts/nuget/*.nupkg --api-key "${{ steps.nuget-login.outputs.NUGET_API_KEY }}" --source https://api.nuget.org/v3/index.json --skip-duplicate
